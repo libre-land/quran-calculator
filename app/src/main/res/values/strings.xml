@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Quran_Calculator</string>
+    <string name="main_title">Калькулятор Корана</string>
+    <string name="input_hint">Количество страниц</string>
 </resources>
