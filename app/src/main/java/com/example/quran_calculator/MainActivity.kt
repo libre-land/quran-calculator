@@ -18,8 +18,28 @@ class MainActivity : AppCompatActivity() {
             val prayerInput = bindingClass.tvPrayerInput.text.toString().toInt()
             val result = pageInput/prayerInput
 
-            bindingClass.tvResult.text = "Вы должны читать ${result} страниц в каждой молитве"
-            bindingClass.tvResult.visibility = View.VISIBLE
+            when(result) {
+                1 -> {
+                    bindingClass.tvResult.text = "Вы должны читать ${result} страницу в каждой молитве"
+                    bindingClass.tvResult.visibility = View.VISIBLE
+                }
+
+                in 2.. 4 -> {
+                    bindingClass.tvResult.text = "Вы должны читать ${result} страницы в каждой молитве"
+                    bindingClass.tvResult.visibility = View.VISIBLE
+                }
+
+                in 5..100000 -> {
+                    bindingClass.tvResult.text = "Вы должны читать ${result} страниц в каждой молитве"
+                    bindingClass.tvResult.visibility = View.VISIBLE
+                }
+
+                else -> {
+                    bindingClass.tvResult.text = "Результат не известен"
+                    bindingClass.tvResult.visibility = View.VISIBLE
+                }
+            }
+
         }
 
     }
