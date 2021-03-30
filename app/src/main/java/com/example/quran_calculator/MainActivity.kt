@@ -19,10 +19,11 @@ class MainActivity : AppCompatActivity() {
             fun mathResult(result: Int): Any {
                 val pageInput = bindingClass.tvPageInput.text.toString().toInt()
                 val prayerInput = bindingClass.tvPrayerInput.text.toString().toInt()
+                val dayInput = bindingClass.tvDayInput.text.toString().toInt()
                 bindingClass.tvResult.visibility = View.VISIBLE
 
                 var result = try {
-                    pageInput / prayerInput
+                    (pageInput / prayerInput) / dayInput
                 }
                 catch (ex: Exception) {
                 }
