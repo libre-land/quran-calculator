@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Quran_Calculator</string>
+    <string name="app_name">Калькулятор Корана</string>
     <string name="main_title">Калькулятор Корана</string>
     <string name="page_input_hint">Количество страниц</string>
     <string name="prayer_input_hint">Количество молитв за день</string>
