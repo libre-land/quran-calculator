@@ -14,33 +14,40 @@ class MainActivity : AppCompatActivity() {
         setContentView(bindingClass.root)
 
         bindingClass.resultButton.setOnClickListener {
-            val pageInput = bindingClass.tvPageInput.text.toString().toInt()
-            val prayerInput = bindingClass.tvPrayerInput.text.toString().toInt()
-            val result = pageInput/prayerInput
+            var result = 0
 
-            when(result) {
-                1 -> {
-                    bindingClass.tvResult.text = "Вы должны читать ${result} страницу в каждой молитве"
-                    bindingClass.tvResult.visibility = View.VISIBLE
+            fun mathResult(result: Int): Any {
+                val pageInput = bindingClass.tvPageInput.text.toString().toInt()
+                val prayerInput = bindingClass.tvPrayerInput.text.toString().toInt()
+                bindingClass.tvResult.visibility = View.VISIBLE
+
+                var result = try {
+                    pageInput / prayerInput
+                }
+                catch (ex: Exception) {
                 }
 
-                in 2.. 4 -> {
-                    bindingClass.tvResult.text = "Вы должны читать ${result} страницы в каждой молитве"
-                    bindingClass.tvResult.visibility = View.VISIBLE
+                return result
+            }
+
+            when(mathResult(result)) {
+                1 -> {
+                    bindingClass.tvResult.text = "Вы должны читать ${mathResult(result)} страницу в каждой молитве"
+                }
+
+                in 2..4 -> {
+                    bindingClass.tvResult.text = "Вы должны читать ${mathResult(result)} страницы в каждой молитве"
                 }
 
                 in 5..100000 -> {
-                    bindingClass.tvResult.text = "Вы должны читать ${result} страниц в каждой молитве"
-                    bindingClass.tvResult.visibility = View.VISIBLE
+                    bindingClass.tvResult.text = "Вы должны читать ${mathResult(result)} страниц в каждой молитве"
                 }
 
                 else -> {
-                    bindingClass.tvResult.text = "Результат не известен"
+                    bindingClass.tvResult.text = "Не удалось вычислить"
                     bindingClass.tvResult.visibility = View.VISIBLE
                 }
             }
-
         }
-
     }
 }
