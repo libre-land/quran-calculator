@@ -2,8 +2,12 @@ package com.example.quran_calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import androidx.viewpager.widget.ViewPager
 import com.example.quran_calculator.databinding.ActivityMainBinding
+import com.example.quran_calculator.fragments.CalculatorFragment
+import com.example.quran_calculator.fragments.CounterFragment
+import com.example.quran_calculator.fragments.adapters.ViewPagerAdapter
+import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
     lateinit var bindingClass: ActivityMainBinding
@@ -13,42 +17,21 @@ class MainActivity : AppCompatActivity() {
         bindingClass = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
 
-        bindingClass.resultButton.setOnClickListener {
-            var result = 0
+        setUpTabs()
+    }
 
-            fun mathResult(result: Int): Any {
-                val pageInput = bindingClass.tvPageInput.text.toString().toInt()
-                val prayerInput = bindingClass.tvPrayerInput.text.toString().toInt()
-                val dayInput = bindingClass.tvDayInput.text.toString().toInt()
-                bindingClass.tvResult.visibility = View.VISIBLE
+    private fun setUpTabs() {
+        val adapter = ViewPagerAdapter(supportFragmentManager)
+        adapter.addFragment(CalculatorFragment(), "Калькулятор")
+        adapter.addFragment(CounterFragment(), "Счетчик")
 
-                var result = try {
-                    (pageInput / prayerInput) / dayInput
-                }
-                catch (ex: Exception) {
-                }
+        val viewPager = findViewById<ViewPager>(R.id.viewPager)
+        val tabs = findViewById<TabLayout>(R.id.tabs)
+        viewPager.adapter = adapter
+        tabs.setupWithViewPager(viewPager)
 
-                return result
-            }
+        tabs.getTabAt(0)!!.setIcon(R.drawable.ic_baseline_calculate_24)
+        tabs.getTabAt(1)!!.setIcon(R.drawable.ic_baseline_fingerprint_24)
 
-            when(mathResult(result)) {
-                1 -> {
-                    bindingClass.tvResult.text = "Вы должны читать ${mathResult(result)} страницу в каждой молитве"
-                }
-
-                in 2..4 -> {
-                    bindingClass.tvResult.text = "Вы должны читать ${mathResult(result)} страницы в каждой молитве"
-                }
-
-                in 5..100000 -> {
-                    bindingClass.tvResult.text = "Вы должны читать ${mathResult(result)} страниц в каждой молитве"
-                }
-
-                else -> {
-                    bindingClass.tvResult.text = "Не удалось вычислить"
-                    bindingClass.tvResult.visibility = View.VISIBLE
-                }
-            }
-        }
     }
 }

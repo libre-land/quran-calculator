@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Калькулятор Корана</string>
+    <string name="app_name">Помощник Хафиза</string>
     <string name="main_title">Калькулятор Корана</string>
     <string name="main_description">Необходимое кол-во страниц для чтения в молитве</string>
     <string name="page_input_hint">Количество страниц</string>
