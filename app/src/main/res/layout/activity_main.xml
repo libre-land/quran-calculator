@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             app:tabBackground="@color/purple_500"
             app:tabGravity="fill"
+            app:tabIndicatorColor="@android:color/white"
             app:tabInlineLabel="true"
             app:tabMode="fixed"
             app:tabTextAppearance="@style/CustomTabStyle"
